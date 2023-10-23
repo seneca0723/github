@@ -11,7 +11,7 @@ import nest_asyncio
 nest_asyncio.apply()
 
 #load_dotenv()
-openai.api_key = OPENAI_API_KEY #os.environ['OPENAI_API_KEY'] 
+openai.api_key = st.secrets["OPENAI_API_KEY"] #os.environ['OPENAI_API_KEY'] 
 
 #define LLM
 llm = OpenAI(temperature=0.2, model_name="gpt-4")
