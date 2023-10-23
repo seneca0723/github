@@ -1,9 +1,6 @@
 import streamlit as st
 import os
-import streamlit.components.v1 as components
-
 import openai
-from dotenv import load_dotenv
 from llama_index import ServiceContext, StorageContext, VectorStoreIndex, SummaryIndex, load_index_from_storage
 from llama_index.llms import OpenAI
 
