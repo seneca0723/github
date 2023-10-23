@@ -1,5 +1,4 @@
 streamlit
 llama-index
-os
 openai
 nest-asyncio
