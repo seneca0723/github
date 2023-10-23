@@ -35,11 +35,21 @@ service_context = ServiceContext.from_defaults(llm=llm, chunk_size=512)
 # Title
 st.title("Med Research App")
 
+def get_subdirectories(path):
+    """Return a list of directory names (not full paths) just below the directory 'path'"""
+    # List all entities in the directory pointed by path
+    all_entities = os.listdir(path)
+    
+    # Filter only directories and exclude files
+    return [name for name in all_entities if os.path.isdir(os.path.join(path, name))]
+
+parent_folder = "./storage"
+
 # Sidebar
 with st.sidebar:
     st.header("Select Papers")
     # Assuming there's a folder named 'data' with papers
-    all_files = os.listdir('/Users/chandlermccann/projects/med_research_app/github/articles/grand_rounds_articles')
+    all_files = get_subdirectories(parent_folder)
     selected_files = st.multiselect("Select files", all_files)
 
     load_button = st.button("Load papers")
@@ -75,7 +85,7 @@ def query_engine_from_papers(file_list, num_sources=4):
     index_set = {}
     for paper in file_list:
         st.write('loading:', paper)
-        storage_context = StorageContext.from_defaults(persist_dir=f"/Users/chandlermccann/projects/med_research_app/github/storage/{paper}")
+        storage_context = StorageContext.from_defaults(persist_dir=f"./storage/{paper}")
         cur_index = load_index_from_storage(
             storage_context, service_context=service_context
         )
