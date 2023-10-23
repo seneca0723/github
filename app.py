@@ -55,6 +55,12 @@ with st.sidebar:
     load_button = st.button("Load papers")
     clear_button = st.button("Clear selection")
 
+    # Display the loaded files in the sidebar
+    if 'loaded_files' in st.session_state and st.session_state.loaded_files:
+        st.markdown("**Loaded Files:**")
+        for loaded_file in st.session_state.loaded_files:
+            st.markdown(f"- {loaded_file}")
+
 # Manage LlamaIndex state
 session_state = st.session_state
 
